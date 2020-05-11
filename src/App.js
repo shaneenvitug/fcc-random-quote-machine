@@ -35,17 +35,22 @@ function App() {
     setRandomNumber(Math.floor(Math.random() * data.quotes.length))
   }
 
-  console.log("randomNumber", randomNumber);
-  console.log("data.quotes[randomNumber]", data.quotes[randomNumber]);
+  const currentQuote = data.quotes[randomNumber].quote;
+  const currentAuthor = data.quotes[randomNumber].author;
 
   return (
-    <div>
+    <div className = 'App'>
     {data && data.quotes &&
       <div id="quote-box">
-          <div id="text">{data.quotes[randomNumber].quote}</div>
-          <div id="author">{data.quotes[randomNumber].author}</div>
-          <button id="new-quote" onClick={getRandomNumber}>New Quote</button>
-          <a id="tweet-quote" href="twitter.com/intent/tweet"></a>
+          <div id="text"><p>{currentQuote}</p></div>
+          <br />
+          <div id="author">- {currentAuthor}</div>
+          <div id="flex-box">
+            <button id="new-quote" onClick={getRandomNumber}>New Quote</button>
+            <a className="twitter-share-button" id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${currentQuote} - ${currentAuthor}`} target="_blank" title="Tweet this quote!">
+              <img src="twitter.png" alt="twitter icon"/>
+            </a>
+          </div>
       </div>
     }
     </div>
