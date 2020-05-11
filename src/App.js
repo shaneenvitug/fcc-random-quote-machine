@@ -1,18 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [data, setData] = useState();
+  const [randomNumber, setRandomNumber] = useState(Math.ceil(Math.random() * 50));
+
+  useEffect(
+    () => {
+      // Start it off by assuming the component is still mounted
+      let mounted = true;
+
+      const loadData = async () => {
+        const response = await axios.get('https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json');
+        // We have a response, but let's first check if component is still mounted
+        if (mounted) {
+          setData(response.data);
+        }
+      };
+      loadData();
+
+      return () => {
+        // When cleanup is called, toggle the mounted variable to false
+        mounted = false;
+      };
+    },
+    []
+  );
+
+  if (!data) {
+    return <div>Loading data...</div>;
+  }
+
+  function getRandomNumber () {
+    setRandomNumber(Math.floor(Math.random() * data.quotes.length))
+  }
+
+  console.log("randomNumber", randomNumber);
+  console.log("data.quotes[randomNumber]", data.quotes[randomNumber]);
+
   return (
     <div>
+    {data && data.quotes &&
       <div id="quote-box">
-        <div id="text">Never give up!</div>
-        <div id="author">--Winston Churchill</div>
-        <button id="new-quote"></button>
-        <a id="tweet-quote" href="twitter.com/intent/tweet"></a>
+          <div id="text">{data.quotes[randomNumber].quote}</div>
+          <div id="author">{data.quotes[randomNumber].author}</div>
+          <button id="new-quote" onClick={getRandomNumber}>New Quote</button>
+          <a id="tweet-quote" href="twitter.com/intent/tweet"></a>
       </div>
+    }
     </div>
   );
 }
-
 export default App;
