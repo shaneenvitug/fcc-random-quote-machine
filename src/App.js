@@ -45,11 +45,12 @@ function App() {
           <div id="text"><p>{currentQuote}</p></div>
           <br />
           <div id="author">- {currentAuthor}</div>
+          <br />
           <div id="flex-box">
-            <button id="new-quote" onClick={getRandomNumber}>New Quote</button>
             <a className="twitter-share-button" id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${currentQuote} - ${currentAuthor}`} target="_blank" title="Tweet this quote!">
-              <img src="twitter.png" alt="twitter icon"/>
+              <div id="flex-box2"><img src="twitter.png" alt="twitter icon"/> <p><strong> Share</strong></p></div>
             </a>
+            <button id="new-quote" onClick={getRandomNumber}><strong>New Quote</strong></button>
           </div>
       </div>
     }

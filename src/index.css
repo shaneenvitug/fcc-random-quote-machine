@@ -34,34 +34,57 @@ code {
 }
 
 button {
-  background-color: rgb(220, 214, 204);
-  color: rgb(109, 109, 109);
+  background-color: #EBE6DD;
+  color: #363636;
   font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
-  border-radius: 0.2rem;
-  border: none;
-  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid #D2BF9C;
+  padding: 0.5rem 0.7rem;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: rgb(209, 203, 192);
-  color: white;
+  background-color: #d2bf9c;
+  border: 2px solid #d2bf9c;
+  color: #f5f3f3;
 }
 
 img {
-  max-width: 0.5em;
-  height: auto;
+  width: auto;
+  height: 1.5rem;
 }
 
 a:hover {
   cursor: pointer;
+  background-color: #d2bf9c;
+  border: 2px solid #d2bf9c;
+  color: #f5f3f3;
 }
 
 #flex-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
+}
+
+a {
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  background: none;
+  color: #363636;
+  font-size: 1.1rem;
+  border: 2px solid #D2BF9C;
+  border-radius: 0.5rem;
+  margin-right: 2rem;
+}
+
+#flex-box2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.3rem;
+  padding: 0 0.6rem;
 }
 
 @media (max-width: 575.98px) {
